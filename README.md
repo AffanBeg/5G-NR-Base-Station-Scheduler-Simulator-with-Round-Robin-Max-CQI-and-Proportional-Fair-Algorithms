@@ -1,41 +1,53 @@
-# 5G NR Resource Scheduler Simulator
+# 5G NR Base Station Scheduler Simulator
 
-This project simulates a simplified 5G New Radio (NR) uplink/downlink scheduler using C++. It models how a base station assigns Resource Blocks (RBs) to multiple UEs (User Equipments) every millisecond using a Proportional Fair scheduling algorithm.
+This project is a C++ simulation of a 5G NR base station uplink/downlink scheduler. It implements and compares three widely used scheduling algorithms:
 
-## Files
-- `main.cpp`: Runs the scheduler over multiple time intervals.
-- `UE.h/.cpp`: Defines the UE class with CQI, throughput, and buffer updates.
-- `Scheduler.h`: Abstract base class for schedulers.
-- `ProportionalFairScheduler.h/.cpp`: Implements the Proportional Fair scheduling logic.
+- 🌀 **Round Robin**
+- 📶 **Max CQI (Channel Quality Indicator)**
+- ⚖️ **Proportional Fair**
 
-## How to Compile
-```bash
-g++ -o scheduler_simulator main.cpp UE.cpp ProportionalFairScheduler.cpp -std=c++17
-```
+These are used in real-world base stations (gNBs) to dynamically assign limited radio resources (Resource Blocks) to multiple UEs (User Equipments) in a fair and efficient way.
 
-## How to Run
-```bash
-./scheduler_simulator
-```
+---
 
-## Project Structure
-- Each UE has:
-  - Unique ID
+## 📌 Project Purpose
+
+This simulator is designed to help understand and visualize the inner workings of a 5G NR scheduler — such as the one used in **Ericsson's UPC Scheduler** — by mimicking how scheduling decisions are made every Transmission Time Interval (TTI).
+
+It is ideal for telecom enthusiasts, students, or professionals preparing for roles involving 5G wireless systems, baseband software, or real-time C++ development.
+
+---
+
+## 🧱 Features
+
+- Simulates a base station assigning Resource Blocks to multiple UEs
+- Models each UE with:
   - Channel Quality Indicator (CQI)
-  - Average throughput
-  - Last assigned RBs
+  - Average throughput (used for Proportional Fair)
+  - ID and buffer activity
+- Outputs assignment logs per TTI
+- Modular scheduler design (easily extendable)
 
-- The scheduler:
-  - Runs every 1ms (TTI)
-  - Has 20 total RBs to allocate
-  - Assigns max 5 RBs per UE
-  - Uses Proportional Fair algorithm: CQI / Average Throughput
+---
 
-## Why This Project
-This demonstrates understanding of:
-- Real-time C++ development
-- 3GPP-like scheduling logic
-- Wireless systems simulation
-- Object-oriented design
+## 🧠 Algorithms Implemented
 
-Great for showcasing readiness for roles like Ericsson's Baseband Software Developer.
+| Algorithm         | Description |
+|------------------|-------------|
+| **Round Robin** | Assigns resources in a fixed rotating order to ensure fairness |
+| **Max CQI**      | Prioritizes UEs with the best signal quality (CQI) |
+| **Proportional Fair** | Balances throughput and fairness by selecting UEs with the best CQI-to-throughput ratio |
+
+---
+
+## 📂 File Structure
+
+```bash
+.
+├── main.cpp                            # Simulation loop (driver code)
+├── UE.h / UE.cpp                       # UE class (User Equipment)
+├── Scheduler.h                         # Abstract base class for schedulers
+├── RoundRobinScheduler.h / .cpp        # Round Robin algorithm
+├── MaxCQIScheduler.h / .cpp            # Max CQI algorithm
+├── ProportionalFairScheduler.h / .cpp  # Proportional Fair algorithm
+└── README.md                           # You're here!
