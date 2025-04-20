@@ -1,3 +1,8 @@
+## 🌐 Web Version
+ 
+[👉 Launch Web Simulator](#) <!-- Replace # with actual link when ready -->
+
+---
 # 5G NR Base Station Scheduler Simulator
 
 This project is a C++ simulation of a 5G NR base station uplink/downlink scheduler. It implements and compares three widely used scheduling algorithms:
